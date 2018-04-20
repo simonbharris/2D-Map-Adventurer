@@ -1,0 +1,14 @@
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\bin\Debug\MinimapRenderer.exe.config
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\bin\Debug\MinimapRenderer.exe
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\bin\Debug\MinimapRenderer.pdb
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MinimapRenderer.csprojResolveAssemblyReference.cache
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MainWindow.g.cs
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\App.g.cs
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MinimapRenderer_MarkupCompile.cache
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MinimapRenderer_MarkupCompile.lref
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MainWindow.baml
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MinimapRenderer.g.resources
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MinimapRenderer.Properties.Resources.resources
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MinimapRenderer.csproj.GenerateResource.Cache
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MinimapRenderer.exe
+c:\users\lagenor\documents\visual studio 2015\Projects\MinimapRenderer\MinimapRenderer\obj\Debug\MinimapRenderer.pdb

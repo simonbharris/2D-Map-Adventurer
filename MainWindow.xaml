@@ -1,0 +1,27 @@
+﻿<Window x:Class="MinimapRenderer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MinimapRenderer"
+        mc:Ignorable="d"
+        Title="Simple 2D Map Adventure" Height="329.119" Width="344.034">
+    <Grid>
+        <Rectangle x:Name="rctNW" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="67" Margin="61,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="67"/>
+        <Rectangle x:Name="rctEast" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="67" Margin="205,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="67" MouseLeftButtonDown="rctEast_MouseLeftButtonDown"/>
+        <Rectangle x:Name="rctCenter" Fill="#FF656587" HorizontalAlignment="Left" Height="67" Margin="133,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="67"/>
+        <Rectangle x:Name="rctWest" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="67" Margin="61,110,0,0" Stroke="Black" VerticalAlignment="Top" Width="67" MouseLeftButtonDown="rctWest_MouseLeftButtonDown"/>
+        <Rectangle x:Name="rctNE" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="67" Margin="205,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="67"/>
+        <Rectangle x:Name="rctNorth" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="67" Margin="133,38,0,0" Stroke="Black" VerticalAlignment="Top" Width="67" MouseLeftButtonDown="rctNorth_MouseLeftButtonDown"/>
+        <Rectangle x:Name="rctSE" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="67" Margin="205,182,0,0" Stroke="Black" VerticalAlignment="Top" Width="67"/>
+        <Rectangle x:Name="rctSouth" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="67" Margin="133,182,0,0" Stroke="Black" VerticalAlignment="Top" Width="67" MouseLeftButtonDown="rctSouth_MouseLeftButtonDown"/>
+        <Rectangle x:Name="rctSW" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="67" Margin="61,182,0,0" Stroke="Black" VerticalAlignment="Top" Width="67"/>
+        <Label x:Name="lbldebug" Content="Label" HorizontalAlignment="Left" Margin="149,131,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="&lt;" HorizontalAlignment="Left" Margin="32,122,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="label_Copy" Content="V" HorizontalAlignment="Left" Margin="158,254,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Label x:Name="label_Copy1" Content="^" HorizontalAlignment="Left" Margin="158,7,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="label_Copy2" Content="&gt;" HorizontalAlignment="Left" Margin="276,122,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <Label x:Name="label1" Content="(Click on cardinal squares)" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
