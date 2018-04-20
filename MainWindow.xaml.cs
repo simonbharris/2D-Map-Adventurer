@@ -21,25 +21,28 @@ namespace MinimapRenderer
     public partial class MainWindow : Window
     {
         Map worldMap;
-        Rectangle[,] mmGrid = new Rectangle[3, 3];
+        const int RENDER_SIZE = 5;
+        Rectangle[,] mmGrid = new Rectangle[RENDER_SIZE, RENDER_SIZE];
 
         public MainWindow()
         {
             InitializeComponent();
+            generateMapObjects();
             worldMap = new Map();
             worldMap.GenerateMap();
             worldMap.MyLocation = new Vector(1, 1);
-            BindRectGrid();
+            BindMovementButtons();
 
-            // Debug (Identify current tile position.)
-            lbldebug.Content = worldMap.myLocation.X + ", " + worldMap.myLocation.Y; 
+            //Debug (Identify current tile position.)
+            lbldebug.Content = worldMap.myLocation.X + ", " + worldMap.myLocation.Y;
+            try
+            {
+                RenderSurroundings();
 
-            RenderSurroundings();
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-
+            } catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+            }
         }
 
         // Does all the color
@@ -54,11 +57,11 @@ namespace MinimapRenderer
 
             // mi, mj = map tiles index // i, j track grid coordinates.
             // Iterates so that all map tiles are assigned the appropriate color or black of the tile does not exist.
-            for (int i = centerX - 1, mi = 0; i <= centerX + 1; i++, mi++)
+            for (int i = centerX - RENDER_SIZE / 2, mi = 0; i <= centerX + RENDER_SIZE / 2; i++, mi++)
             {
-                for (int j = centerY - 1, mj = 0; j <= centerY + 1; j++, mj++)
+                for (int j = centerY - RENDER_SIZE/2, mj = 0; j <= centerY + RENDER_SIZE / 2; j++, mj++)
                 {
-                    if (j <= 0 || i <= 0 || worldMap.grid[j, i] == null)
+                    if (j < 0 || j > 6 || i > 6 || i < 0 || worldMap.grid[j, i] == null)
                     {
                         fillRect(mmGrid[mj, mi], Colors.Black);
                     }
@@ -70,47 +73,72 @@ namespace MinimapRenderer
             }
         }
 
-        // Binds GUI rects to mmGrid array.
-        private void BindRectGrid()
+        private void BindMovementButtons()
         {
-            mmGrid[0, 0] = rctNW;
-            mmGrid[0, 1] = rctNorth;
-            mmGrid[0, 2] = rctNE;
-            mmGrid[1, 0] = rctWest;
-            mmGrid[1, 1] = rctCenter;
-            mmGrid[1, 2] = rctEast;
-            mmGrid[2, 0] = rctSW;
-            mmGrid[2, 1] = rctSouth;
-            mmGrid[2, 2] = rctSE;
+            int mapCenter = RENDER_SIZE / 2;
+
+            mmGrid[mapCenter + 1, mapCenter].MouseLeftButtonDown += SouthButton_MouseLeftButtonDown;
+            mmGrid[mapCenter - 1, mapCenter].MouseLeftButtonDown += NorthButton_MouseLeftButtonDown;
+            mmGrid[mapCenter, mapCenter + 1].MouseLeftButtonDown += EastButton_MouseLeftButtonDown;
+            mmGrid[mapCenter, mapCenter - 1].MouseLeftButtonDown += WestButton_MouseLeftButtonDown;
         }
 
-        // Register GUI clicks.
-        private void rctSouth_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            worldMap.MoveSouth();
-            RenderSurroundings();
-            lbldebug.Content = worldMap.myLocation.X + ", " + worldMap.myLocation.Y;
-        }
-
-        private void rctEast_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            worldMap.MoveEast();
-            RenderSurroundings();
-            lbldebug.Content = worldMap.myLocation.X + ", " + worldMap.myLocation.Y;
-        }
-
-        private void rctNorth_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            worldMap.MoveNorth();
-            RenderSurroundings();
-            lbldebug.Content = worldMap.myLocation.X + ", " + worldMap.myLocation.Y;
-        }
-
-        private void rctWest_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void WestButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             worldMap.MoveWest();
             RenderSurroundings();
-            lbldebug.Content = worldMap.myLocation.X + ", " + worldMap.myLocation.Y;
+        }
+
+        private void EastButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            worldMap.MoveEast();
+            RenderSurroundings();
+        }
+
+        private void SouthButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            worldMap.MoveSouth();
+            RenderSurroundings();
+        }
+
+        private void NorthButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            worldMap.MoveNorth();
+            RenderSurroundings();
+        }
+
+        private void generateMapObjects()
+        {
+            double canvasWidth = this.lineCanvas.Width;
+
+            // Math may seem odd, but it all scales based off renderSize variable.
+            // Odd numbers cause map to have a "centered" square.
+            // Other functionality of the map probably won't work with even numbers.
+            double mapHeight = lineCanvas.Height;
+            double mapWidth = lineCanvas.Width;
+            double tileSize = canvasWidth * 25 / 100 * (3 / (double) RENDER_SIZE);
+            double tilePadding = 12.5 * (3 / RENDER_SIZE);
+
+            for (int i = 0; i < RENDER_SIZE; i++)
+            {
+                for(int j = 0; j < RENDER_SIZE; j++)
+                {
+                    Rectangle rect = new Rectangle();
+                    SolidColorBrush solidBrush = new SolidColorBrush(Colors.Black);
+                    rect.Height = tileSize;
+                    rect.Width = tileSize;
+
+                    Canvas.SetLeft(rect, tilePadding + (j) * ((mapWidth / RENDER_SIZE) ));
+                    Canvas.SetTop(rect, tilePadding + (i) * ((mapHeight / RENDER_SIZE) ));
+                    rect.StrokeThickness = 1;
+                    rect.Stroke = Brushes.Black;
+                    this.lineCanvas.Children.Add(rect);
+
+                    mmGrid[i, j] = rect;
+
+                    rect.Fill = solidBrush;
+                }
+            }
         }
     }
 }

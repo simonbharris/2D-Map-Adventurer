@@ -60,7 +60,7 @@ namespace MinimapRenderer
 
         public void MoveNorth()
         {
-            if ((myLocation.Y - 1 >= 1))
+            if ((myLocation.Y - 1 >= 0))
             {
                 myLocation.Y--;
             }
@@ -68,7 +68,7 @@ namespace MinimapRenderer
 
         public void MoveWest()
         {
-            if ((myLocation.X - 1 >= 1))
+            if ((myLocation.X - 1 >= 0))
             {
                 myLocation.X--;
             }
